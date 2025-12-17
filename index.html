@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOBLESSE | 프리미엄 코스 가격표</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* --- 1. 노블레스 테마 설정 --- */
+        :root {
+            --primary-gold: #c5a059;
+            --dark-gold: #a67c37;
+            --luxury-navy: #0a192f;
+            --deep-black: #050505;
+            --soft-white: #f8f9fa;
+        }
+
+        body { 
+            font-family: 'Times New Roman', 'Malgun Gothic', serif;
+            margin: 0; padding: 0; display: flex; justify-content: center; 
+            background-color: #1a1a1a; color: var(--soft-white);
+        }
+        
+        .phone-container { position: relative; display: flex; justify-content: center; margin-top: 20px; }
+        
+        .phone-frame {
+            width: 600px; height: 1100px; overflow-y: auto; 
+            background-color: var(--luxury-navy);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 4px solid var(--primary-gold);
+            border-radius: 30px; padding: 40px 30px; box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 배경 로고/이미지 설정 */
+        #main-background {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; opacity: 0.15;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png'); /* 고급스러운 질감 */
+        }
+        
+        #course-list-view, #detail-view, #admin-view { position: relative; z-index: 1; }
+
+        /* --- 2. 노블레스 스타일 UI 요소 --- */
+        .course-list-header { 
+            color: var(--primary-gold); text-align: center; 
+            font-size: 2.2em; letter-spacing: 5px; margin-bottom: 40px;
+            border-bottom: 1px solid var(--primary-gold); padding-bottom: 20px;
+        }
+
+        .course-item { 
+            background: linear-gradient(135deg, #112240 0%, #0a192f 100%);
+            border: 1px solid var(--primary-gold); padding: 25px; margin-bottom: 20px; 
+            border-radius: 5px; display: flex; justify-content: space-between; align-items: center; 
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .course-item:hover { transform: scale(1.02); background-color: #1d2d50; border-width: 2px; }
+
+        .course-item .course-title { font-size: 1.4em; font-weight: bold; color: var(--soft-white); }
+        .course-item .course-price { font-size: 1.3em; color: var(--primary-gold); font-weight: bold; }
+
+        /* 상세 페이지 스타일 */
+        #detail-view h3 { color: var(--primary-gold); text-align: center; font-size: 1.8em; }
+        .option-item { 
+            background: rgba(255,255,255,0.05); padding: 15px; margin-bottom: 10px;
+            border-radius: 4px; display: flex; align-items: center;
+        }
+        .option-item label { flex-grow: 1; cursor: pointer; }
+        .option-item input[type="checkbox"] { accent-color: var(--primary-gold); margin-right: 15px; }
+
+        #total-display { 
+            margin-top: 30px; padding: 20px; background: var(--primary-gold); 
+            color: var(--luxury-navy); border-radius: 5px; font-weight: bold;
+            display: flex; justify-content: space-between; font-size: 1.2em;
+        }
+
+        /* --- 3. 제어 버튼 그룹 (우측 상단 고정) --- */
+        #control-buttons {
+            position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000;
+        }
+        #control-buttons button {
+            padding: 12px 20px; border: 1px solid var(--primary-gold); background: #000;
+            color: var(--primary-gold); cursor: pointer; font-weight: bold; border-radius: 4px;
+            transition: 0.3s; width: 160px;
+        }
+        #control-buttons button:hover { background: var(--primary-gold); color: #000; }
+        .admin-mode-active { background: #ff4d4d !important; color: white !important; border-color: #ff4d4d !important; }
+
+        /* --- 4. 견적서 모달 스타일 --- */
+        .modal-content { 
+            background-color: var(--luxury-navy); color: var(--soft-white);
+            padding: 40px; border: 2px solid var(--primary-gold); border-radius: 0;
+            width: 450px; text-align: center;
+        }
+        .quote-header h3 { color: var(--primary-gold); font-size: 2em; border-bottom: 2px solid var(--primary-gold); padding-bottom: 10px; }
+        .final-total .total-price { font-size: 3em; color: var(--primary-gold); margin-top: 10px; }
+
+        /* 관리자 편집 폼 스타일 */
+        #admin-view { background: #112240; padding: 20px; border: 1px dashed var(--primary-gold); }
+        .admin-course-item { background: #0a192f; border: 1px solid #333; padding: 15px; margin-bottom: 15px; }
+        input[type="text"], input[type="number"] { background: #000; border: 1px solid var(--primary-gold); color: white; padding: 8px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+<div id="control-buttons">
+    <button id="toggle-admin-btn" onclick="toggleAdminMode()">⚙️ 편집 모드</button>
+    <button id="save-admin-changes-btn" onclick="saveAdminChanges()" style="display:none; background: #28a745; color: white;">✅ 변경사항 저장</button>
+    <button id="capture-list-btn" onclick="captureFrameAsPNG('phone-frame-capture')">📸 목록 캡처</button>
+    <button id="show-quote-btn" class="detail-only" style="display:none;" onclick="showFinalQuote()">💸 견적서 확인</button>
+    <button id="capture-quote-btn" class="detail-only" style="display:none;" onclick="captureQuoteAsPNG()">📷 견적서 캡처</button>
+</div>
+
+<div class="phone-container">
+    <div class="phone-frame" id="phone-frame-capture">
+        <div id="main-background"></div>
+        
+        <div id="course-list-view">
+            <h1 class="course-list-header">NOBLESSE</h1>
+            <p style="text-align:center; color: var(--primary-gold); letter-spacing: 2px; margin-top:-30px; margin-bottom:40px;">PREMIUM PRIVATE SERVICE</p>
+            <div id="course-items-container"></div>
+        </div>
+
+        <div id="admin-view" style="display:none;">
+            <h3 style="color: var(--primary-gold);">KEY: DATA MANAGEMENT</h3>
+            <div id="admin-course-editor"></div>
+            <button onclick="addNewCourse(event)" style="width:100%; padding:15px; background:var(--primary-gold); border:none; margin-top:10px; cursor:pointer; font-weight:bold;">+ 새 코스 추가</button>
+        </div>
+
+        <div id="detail-view" style="display:none;">
+            <h3 id="detail-title-selected"></h3>
+            <p style="text-align:center; opacity:0.8;">[<span id="detail-time-selected"></span> | 기본: ₩ <span id="detail-price-selected-val"></span>]</p>
+            <hr style="border-color: var(--primary-gold); margin:20px 0;">
+            <div id="options-list"></div>
+            <div id="total-display">
+                <span>TOTAL AMOUNT</span>
+                <span id="current-total-price">₩ 0</span>
+            </div>
+            <button onclick="showCourseList()" style="width:100%; background:none; border:1px solid var(--primary-gold); color:var(--primary-gold); padding:15px; margin-top:20px; cursor:pointer;">← BACK TO LIST</button>
+        </div>
+    </div>
+</div>
+
+<div id="final-quote-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; justify-content:center; align-items:center;">
+    <div class="modal-content" id="modal-capture-target">
+        <div class="quote-header">
+            <h3>NOBLESSE QUOTE</h3>
+        </div>
+        <div id="quote-details-content" style="text-align:left; padding:20px 0; line-height:1.8;"></div>
+        <div class="final-total">
+            <p style="margin-bottom:0; opacity:0.7;">FINAL SUM</p>
+            <div class="total-price">₩ <span id="modal-total-price">0</span></div>
+        </div>
+        <button id="modal-close-btn" onclick="closeFinalQuoteModal()" style="background:none; border:1px solid var(--primary-gold); color:var(--primary-gold); padding:10px 30px; margin-top:30px; cursor:pointer;">CLOSE</button>
+    </div>
+</div>
+
+<script>
+    /* --- JS 로직은 기존 데이지 소스 기반으로 노블레스 스타일에 맞게 데이터와 렌더링 유지 --- */
+    const INITIAL_COURSES = {
+        'platinum': { title: 'PLATINUM', time: '120 MIN', basePrice: 200000, options: [{name: '최고급 와인 서비스', price: 50000}, {name: '픽업 서비스', price: 30000}] },
+        'black': { title: 'BLACK', time: '240 MIN', basePrice: 400000, options: [{name: '전담 비서 케어', price: 100000}, {name: '프라이빗 룸 업그레이드', price: 50000}] }
+    };
+
+    let coursesData;
+    let currentSelectedCourseKey = null;
+    let isEditingMode = false;
+    const formatPrice = (p) => p.toLocaleString('ko-KR');
+
+    // 데이터 로드
+    function loadData() {
+        const saved = localStorage.getItem('noblesseData');
+        coursesData = saved ? JSON.parse(saved) : INITIAL_COURSES;
+    }
+
+    // 목록 렌더링
+    function renderList() {
+        const container = document.getElementById('course-items-container');
+        let html = '';
+        for (const key in coursesData) {
+            html += `
+                <div class="course-item" onclick="selectCourse('${key}')">
+                    <div class="course-title">${coursesData[key].title}</div>
+                    <div class="course-price">₩ ${formatPrice(coursesData[key].basePrice)}</div>
+                </div>`;
+        }
+        container.innerHTML = html;
+    }
+
+    function selectCourse(key) {
+        currentSelectedCourseKey = key;
+        const c = coursesData[key];
+        document.getElementById('course-list-view').style.display = 'none';
+        document.getElementById('detail-view').style.display = 'block';
+        document.getElementById('detail-title-selected').textContent = c.title + " COURSE";
+        document.getElementById('detail-time-selected').textContent = c.time;
+        document.getElementById('detail-price-selected-val').textContent = formatPrice(c.basePrice);
+        
+        // 버튼 제어
+        document.querySelectorAll('.detail-only').forEach(b => b.style.display = 'block');
+        
+        let optHtml = '<h4>ADDITIONAL OPTIONS</h4>';
+        c.options.forEach((o, i) => {
+            optHtml += `
+                <div class="option-item">
+                    <input type="checkbox" id="o-${i}" data-price="${o.price}" onchange="updateTotal()">
+                    <label for="o-${i}">${o.name} (+₩${formatPrice(o.price)})</label>
+                </div>`;
+        });
+        document.getElementById('options-list').innerHTML = optHtml;
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let total = coursesData[currentSelectedCourseKey].basePrice;
+        document.querySelectorAll('#options-list input:checked').forEach(cb => {
+            total += parseInt(cb.dataset.price);
+        });
+        document.getElementById('current-total-price').textContent = '₩ ' + formatPrice(total);
+    }
+
+    function showCourseList() {
+        document.getElementById('course-list-view').style.display = 'block';
+        document.getElementById('detail-view').style.display = 'none';
+        document.querySelectorAll('.detail-only').forEach(b => b.style.display = 'none');
+    }
+
+    function showFinalQuote() {
+        const c = coursesData[currentSelectedCourseKey];
+        let total = c.basePrice;
+        let optList = '';
+        document.querySelectorAll('#options-list input:checked').forEach(cb => {
+            total += parseInt(cb.dataset.price);
+            optList += `<li>- ${cb.nextElementSibling.textContent}</li>`;
+        });
+
+        document.getElementById('quote-details-content').innerHTML = `
+            <p><strong>COURSE:</strong> ${c.title}</p>
+            <p><strong>TIME:</strong> ${c.time}</p>
+            <ul style="list-style:none; padding:0; border-top:1px solid #333; padding-top:10px;">
+                ${optList || '<li>No options selected</li>'}
+            </ul>
+        `;
+        document.getElementById('modal-total-price').textContent = formatPrice(total);
+        document.getElementById('final-quote-modal').style.display = 'flex';
+    }
+
+    function closeFinalQuoteModal() { document.getElementById('final-quote-modal').style.display = 'none'; }
+
+    // 캡처 기능 (새 탭으로 열기)
+    function captureFrameAsPNG(id) {
+        html2canvas(document.getElementById(id), { scale: 2, backgroundColor: '#0a192f' }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'NOBLESSE_PRICE.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
+
+    function captureQuoteAsPNG() {
+        const target = document.getElementById('modal-capture-target');
+        document.getElementById('modal-close-btn').style.display = 'none';
+        html2canvas(target, { scale: 2, backgroundColor: '#0a192f' }).then(canvas => {
+            document.getElementById('modal-close-btn').style.display = 'block';
+            const link = document.createElement('a');
+            link.download = 'NOBLESSE_QUOTE.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
+
+    // 관리자 편집 기능
+    function toggleAdminMode() {
+        isEditingMode = !isEditingMode;
+        document.getElementById('admin-view').style.display = isEditingMode ? 'block' : 'none';
+        document.getElementById('course-list-view').style.display = isEditingMode ? 'none' : 'block';
+        document.getElementById('save-admin-changes-btn').style.display = isEditingMode ? 'block' : 'none';
+        document.getElementById('toggle-admin-btn').classList.toggle('admin-mode-active');
+        if(isEditingMode) renderAdminEditor();
+    }
+
+    function renderAdminEditor() {
+        let html = '';
+        for (const key in coursesData) {
+            const c = coursesData[key];
+            html += `
+                <div class="admin-course-item">
+                    <input type="text" value="${c.title}" onchange="coursesData['${key}'].title=this.value">
+                    <input type="text" value="${c.time}" onchange="coursesData['${key}'].time=this.value">
+                    <input type="number" value="${c.basePrice}" onchange="coursesData['${key}'].basePrice=parseInt(this.value)">
+                    <button onclick="deleteCourse('${key}')" style="background:#ff4d4d; border:none; color:white; padding:5px; cursor:pointer;">코스 삭제</button>
+                </div>`;
+        }
+        document.getElementById('admin-course-editor').innerHTML = html;
+    }
+
+    function saveAdminChanges() {
+        localStorage.setItem('noblesseData', JSON.stringify(coursesData));
+        alert("✅ 노블레스 데이터가 성공적으로 저장되었습니다.");
+        toggleAdminMode();
+        renderList();
+    }
+
+    window.onload = () => { loadData(); renderList(); };
+</script>
+</body>
+</html>
