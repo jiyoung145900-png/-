@@ -6,65 +6,52 @@
     <title>NOBLESSE | VIP 가격표</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* --- 1. 노블레스 테마 디자인 (블랙 & 골드) --- */
+        /* --- 1. 테마 디자인 및 레이아웃 --- */
         :root {
-            --noble-gold: #D4AF37;       /* 메인 골드 */
-            --noble-gold-dim: #aa8c2c;   /* 차분한 골드 */
-            --noble-black: #0a0a0c;      /* 딥 블랙 배경 */
-            --noble-dark-gray: #1a1a1d;  /* 요소 배경 */
-            --noble-text: #f0f0f0;       /* 기본 텍스트 (화이트 계열) */
-            --noble-red: #800000;        /* 경고/강조 레드 */
+            --noble-gold: #D4AF37;
+            --noble-gold-dim: #aa8c2c;
+            --noble-black: #0a0a0c;
+            --noble-text: #f0f0f0;
         }
 
         body { 
-            font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', serif;
-            margin: 0; padding: 0; 
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            margin: 0; padding: 20px; 
             display: flex; justify-content: center; 
-            background-color: #000000; 
+            background-color: #1a1a1a; 
             color: var(--noble-text);
-            position: relative;
         }
         
-        .phone-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+        .phone-container { position: relative; display: flex; justify-content: center; }
 
-        /* 스마트폰 프레임 디자인 */
+        /* 요청하신 1360 * 2496 고정 해상도 */
         .phone-frame {
-            width: 680px;
-            height: 1248px; 
-            overflow-y: auto; 
-            background-color: var(--noble-black);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15); /* 은은한 골드 빛 */
-            border: 2px solid var(--noble-gold);
-            border-radius: 20px;
-            padding: 30px 25px; 
-            box-sizing: border-box;
+            width: 1360px;
+            height: 2496px; 
             position: relative;
+            overflow-y: auto;
+            background-color: #000;
+            border-radius: 60px;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            box-sizing: border-box;
+            padding: 80px 60px;
         }
-        
-        /* 스크롤바 디자인 */
-        .phone-frame::-webkit-scrollbar { width: 8px; }
-        .phone-frame::-webkit-scrollbar-track { background: #000; }
-        .phone-frame::-webkit-scrollbar-thumb { background: var(--noble-gold-dim); border-radius: 4px; }
 
-        /* 배경 패턴 (고급스러운 질감) */
+        /* ★ 배경 이미지 설정 (가장 중요) ★ */
         #main-background {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 0; 
-            opacity: 0.2; 
-            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png'); 
-            background-size: cover; 
-            pointer-events: none;
+            opacity: 1; /* 투명도 없음 (선명하게) */
+            background-image: url('bok.png'); /* 파일명 확인 */
+            background-size: 100% 100%; /* 프레임에 꽉 채움 */
+            background-position: center;
+            background-repeat: no-repeat;
         }
         
-        #course-list-view, #detail-view, #admin-view { position: relative; z-index: 1; }
-
+        #content-layer { position: relative; z-index: 1; }
+        
         /* --- 2. 우측 제어 버튼 그룹 --- */
         #control-buttons {
             position: absolute;
