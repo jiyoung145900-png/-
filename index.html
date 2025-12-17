@@ -24,56 +24,41 @@
         
         .phone-container { position: relative; display: flex; justify-content: center; }
 
-        /* 1360x2496 초대형 사이즈 유지 */
+        /* 1360x2496 대형 사이즈 유지 */
         .phone-frame {
-            width: 1360px;
-            height: 2496px; 
-            position: relative;
-            overflow-y: auto;
+            width: 1360px; height: 2496px; 
+            position: relative; overflow-y: auto;
             background-color: #0a0a0c;
             background-image: url('bok.png'); 
             background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 60px;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
-            box-sizing: border-box;
-            padding: 80px 60px;
-            z-index: 1;
+            background-position: center; background-repeat: no-repeat;
+            border-radius: 60px; box-shadow: 0 0 50px rgba(0,0,0,1);
+            box-sizing: border-box; padding: 80px 60px; z-index: 1;
         }
 
-        /* 우측 제어 버튼 (위치 유지) */
+        /* 우측 제어 패널 */
         #control-buttons {
-            position: absolute;
-            top: 30px; right: -220px; 
-            z-index: 1001; 
-            display: flex; flex-direction: column; gap: 12px; width: 200px;
+            position: absolute; top: 30px; right: -220px; 
+            z-index: 1001; display: flex; flex-direction: column; gap: 12px; width: 200px;
         }
-
         #control-buttons button {
             padding: 15px 10px; border: 1px solid var(--noble-gold);
             border-radius: 4px; cursor: pointer; font-size: 1.2em;
-            width: 100%; font-weight: bold;
-            background-color: #111; color: var(--noble-gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: all 0.3s;
+            width: 100%; font-weight: bold; background-color: #111; color: var(--noble-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: all 0.3s;
         }
-
         #control-buttons button:hover { background-color: var(--noble-gold); color: #000; }
         .admin-mode-active { background-color: #5a0000 !important; color: #ffcccc !important; border-color: #ff0000 !important; }
 
-        /* 코스 목록 디자인 */
+        /* 목록 디자인 */
         .course-list-header { 
             color: var(--noble-gold); text-align: center; 
             font-size: 3.5em; margin-top: 150px; margin-bottom: 50px; 
-            border-bottom: 1px solid var(--noble-gold); padding-bottom: 20px;
-            letter-spacing: 4px;
+            border-bottom: 1px solid var(--noble-gold); padding-bottom: 20px; letter-spacing: 4px;
         }
-
         .course-item { 
             background: linear-gradient(145deg, #1a1a1d, #0d0d0e);
-            border: 1px solid #333; 
-            border-left: 6px solid var(--noble-gold);
+            border: 1px solid #333; border-left: 6px solid var(--noble-gold);
             padding: 35px; margin-bottom: 25px; border-radius: 4px; 
             display: flex; justify-content: space-between; align-items: center; 
             cursor: pointer; transition: 0.3s;
@@ -84,7 +69,7 @@
         .course-item .course-info span { display: block; font-size: 1.5em; color: #888; }
         .course-item .course-price { font-size: 2.5em !important; font-weight: 800; color: #fff !important; margin-top: 10px; }
 
-        /* 상세 페이지 & 옵션 (50px 체크박스 복구) */
+        /* 상세 페이지 & 50px 체크박스 */
         #detail-view { display: none; flex-direction: column; background-color: rgba(10, 10, 12, 0.95); padding: 40px; border-radius: 10px; border: 1px solid var(--noble-gold); }
         #detail-view h3 { color: var(--noble-gold); font-size: 3.5em; margin-bottom: 10px; text-align: center; }
         #detail-view p { color: #888; border-bottom: 1px solid #333; padding-bottom: 30px; margin-bottom: 30px; text-align: center; font-size: 1.8em; }
@@ -96,7 +81,7 @@
         #total-display { background-color: var(--noble-gold); color: #000; padding: 40px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 2em; }
         #current-total-price { font-size: 3em; font-weight: 900; }
 
-        /* 관리자 모드 아이템 */
+        /* 관리자 모드 디자인 */
         .admin-course-item { background-color: #1e1e1e; padding: 25px; margin-bottom: 25px; border: 1px solid #444; border-radius: 10px; }
         .admin-course-item h4 { font-size: 2em; color: var(--noble-gold); margin-top: 0; }
         .admin-course-item label { color: #aaa; font-size: 1.2em; display: block; margin-top: 15px; }
@@ -106,7 +91,7 @@
 
         .action-btn { width: 100%; padding: 30px; margin-top: 20px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer; font-weight: bold; font-size: 2.2em; border-radius: 8px; }
 
-        /* 모달 디자인 복구 */
+        /* 모달 견적서 */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background-color: #0a0a0c; padding: 60px; width: 90%; max-width: 800px; border: 3px solid var(--noble-gold); color: #fff; position: relative; }
         .quote-header h3 { color: var(--noble-gold); letter-spacing: 10px; text-align: center; font-size: 3.5em; margin-bottom: 50px; border-bottom: 2px solid var(--noble-gold); padding-bottom: 20px;}
@@ -168,43 +153,13 @@
 </div>
 
 <script>
-    // --- 1. 데이터 정의 (모든 상세 옵션 100% 복구) ---
+    // --- 1. 데이터 정의 (복구 완료) ---
     const INITIAL_COURSES = {
-        'sapphire': { 
-            title: '사파이어 코스', time: '1시간', basePrice: 50000, 
-            options: [
-                {name: '기본 마사지', price: 0}, {name: '핸드잡', price: 0}, 
-                {name: '입싸 / 얼싸', price: 5000}, {name: '니플 플레이', price: 10000}
-            ] 
-        },
-        'emerald': { 
-            title: '에메랄드 코스', time: '2시간', basePrice: 90000, 
-            options: [
-                {name: '기본 마사지', price: 0}, {name: '파이즈리', price: 20000}, 
-                {name: '무한 오랄 (BJ)', price: 30000}, {name: '전신 바디 타기', price: 20000}
-            ] 
-        },
-        'ruby': { 
-            title: '루비 코스', time: '4시간', basePrice: 180000, 
-            options: [
-                {name: '기본 마사지', price: 0}, {name: '질내 사정 (질싸)', price: 30000}, 
-                {name: '노콘 옵션', price: 20000}, {name: '애널 (뒤태 공략)', price: 50000}, {name: '중출', price: 20000}
-            ] 
-        },
-        'diamond': { 
-            title: '다이아몬드 코스', time: '12시간', basePrice: 500000, 
-            options: [
-                {name: '기본 마사지', price: 0}, {name: '코스튬 선택', price: 10000}, 
-                {name: '수치플 / 똥까시', price: 30000}, {name: '안대 & 개갈기', price: 20000}
-            ] 
-        },
-        'black': { 
-            title: '더 블랙 (VVIP)', time: '24시간', basePrice: 1000000, 
-            options: [
-                {name: '기본 마사지', price: 0}, {name: '본디지 (결박)', price: 40000}, 
-                {name: 'SM 플레이 / 강간플', price: 70000}, {name: '노예 플레이', price: 80000}
-            ] 
-        }
+        'sapphire': { title: '사파이어 코스', time: '1시간', basePrice: 50000, options: [{name: '기본 마사지', price: 0}, {name: '핸드잡', price: 0}, {name: '입싸 / 얼싸', price: 5000}, {name: '니플 플레이', price: 10000}] },
+        'emerald': { title: '에메랄드 코스', time: '2시간', basePrice: 90000, options: [{name: '기본 마사지', price: 0}, {name: '파이즈리', price: 20000}, {name: '무한 오랄 (BJ)', price: 30000}, {name: '전신 바디 타기', price: 20000}] },
+        'ruby': { title: '루비 코스', time: '4시간', basePrice: 180000, options: [{name: '기본 마사지', price: 0}, {name: '질내 사정 (질싸)', price: 30000}, {name: '노콘 옵션', price: 20000}, {name: '애널 (뒤태 공략)', price: 50000}, {name: '중출', price: 20000}] },
+        'diamond': { title: '다이아몬드 코스', time: '12시간', basePrice: 500000, options: [{name: '기본 마사지', price: 0}, {name: '코스튬 선택', price: 10000}, {name: '수치플 / 똥까시', price: 30000}, {name: '안대 & 개갈기', price: 20000}] },
+        'black': { title: '더 블랙 (VVIP)', time: '24시간', basePrice: 1000000, options: [{name: '기본 마사지', price: 0}, {name: '본디지 (결박)', price: 40000}, {name: 'SM 플레이 / 강간플', price: 70000}, {name: '노예 플레이', price: 80000}] }
     };
 
     let coursesData;
@@ -214,7 +169,7 @@
 
     const formatPrice = (p) => p.toLocaleString('ko-KR');
 
-    // --- 2. 데이터 관리 (V2 시스템) ---
+    // --- 2. 데이터 관리 (V2 자동 저장) ---
     function loadCoursesData() {
         const saved = localStorage.getItem('noblesseCoursesData_KR_V2');
         const idx = localStorage.getItem('noblesseNewCourseIndex_KR_V2');
@@ -250,14 +205,10 @@
         let html = '';
         for (const key in coursesData) {
             const c = coursesData[key];
-            html += `
-                <div class="course-item" onclick="selectCourse('${key}')">
-                    <div class="course-title">${c.title}</div>
-                    <div class="course-info">
-                        <span>${c.time}</span>
-                        <span class="course-price">₩ ${formatPrice(c.basePrice)}</span>
-                    </div>
-                </div>`;
+            html += `<div class="course-item" onclick="selectCourse('${key}')">
+                        <div class="course-title">${c.title}</div>
+                        <div class="course-info"><span>${c.time}</span><span class="course-price">₩ ${formatPrice(c.basePrice)}</span></div>
+                     </div>`;
         }
         container.innerHTML = html;
         document.getElementById('phone-frame-capture').scrollTop = 0;
@@ -283,14 +234,10 @@
         const list = document.getElementById('options-list');
         let html = '<h3>ADDITIONAL OPTIONS</h3>';
         options.forEach((opt, i) => {
-            html += `
-                <div class="option-item">
-                    <input type="checkbox" id="opt-${i}" data-price="${opt.price}" onchange="updateTotalPrice()">
-                    <label for="opt-${i}">
-                        <span>${opt.name}</span>
-                        <span style="color:var(--noble-gold);">+₩${formatPrice(opt.price)}</span>
-                    </label>
-                </div>`;
+            html += `<div class="option-item">
+                        <input type="checkbox" id="opt-${i}" data-price="${opt.price}" onchange="updateTotalPrice()">
+                        <label for="opt-${i}"><span>${opt.name}</span><span style="color:var(--noble-gold);">+₩${formatPrice(opt.price)}</span></label>
+                     </div>`;
         });
         list.innerHTML = html;
 
@@ -305,10 +252,10 @@
         let total = coursesData[currentSelectedCourseKey].basePrice;
         document.querySelectorAll('#options-list input:checked').forEach(cb => { total += parseInt(cb.dataset.price); });
         document.getElementById('current-total-price').textContent = '₩ ' + formatPrice(total);
-        if (shouldSave) saveUserSelection();
+        if (shouldSave) saveUserSelection(); // 자동 저장 (V2)
     }
 
-    // --- 4. 관리자 모드 (스크롤 유지 & 디테일 복구) ---
+    // --- 4. 관리자 모드 (스크롤/위치 제어 복구) ---
     function toggleAdminMode() {
         isEditingMode = !isEditingMode;
         if (isEditingMode) {
@@ -322,8 +269,7 @@
             renderAdminEditor();
         } else {
             if(confirm("저장하지 않고 편집을 종료하시겠습니까?")) {
-                loadCoursesData();
-                renderCourseList();
+                loadCoursesData(); renderCourseList();
                 document.getElementById('toggle-admin-btn').textContent = '관리자 모드';
                 document.getElementById('toggle-admin-btn').classList.remove('admin-mode-active');
                 document.getElementById('save-admin-changes-btn').style.display = 'none';
@@ -336,44 +282,41 @@
         let html = '';
         for (const key in coursesData) {
             const c = coursesData[key];
-            html += `
-                <div class="admin-course-item" data-key="${key}">
-                    <h4>${c.title}</h4>
-                    <label>코스명:</label><input type="text" data-field="title" value="${c.title}">
-                    <label>시간:</label><input type="text" data-field="time" value="${c.time}">
-                    <label>기본 가격:</label><input type="number" data-field="basePrice" value="${c.basePrice}">
-                    <div class="admin-options-container">
-                        <label style="color:var(--noble-gold);">옵션 관리:</label>`;
+            html += `<div class="admin-course-item" data-key="${key}">
+                        <h4>${c.title}</h4>
+                        <label>코스명:</label><input type="text" data-field="title" value="${c.title}">
+                        <label>시간:</label><input type="text" data-field="time" value="${c.time}">
+                        <label>기본 가격:</label><input type="number" data-field="basePrice" value="${c.basePrice}">
+                        <div class="admin-options-container"><label style="color:var(--noble-gold);">옵션 관리:</label>`;
             c.options.forEach((opt, idx) => {
-                html += `
-                    <div class="admin-option-item">
-                        <input type="text" value="${opt.name}" data-opt-name style="width:50%">
-                        <input type="number" value="${opt.price}" data-opt-price style="width:30%">
-                        <button onclick="deleteOption('${key}', ${idx})">삭제</button>
-                    </div>`;
+                html += `<div class="admin-option-item">
+                            <input type="text" value="${opt.name}" data-opt-name style="width:50%">
+                            <input type="number" value="${opt.price}" data-opt-price style="width:30%">
+                            <button onclick="deleteOption('${key}', ${idx})">삭제</button>
+                         </div>`;
             });
             html += `</div>
-                    <button class="action-btn" style="padding:15px; font-size:1.2em;" onclick="addOptionToCourse(event, '${key}')">+ 옵션 추가</button>
-                    <button class="action-btn" style="padding:15px; font-size:1.2em; background:#400;" onclick="deleteCourse(event, '${key}')">코스 삭제</button>
-                </div>`;
+                        <button class="action-btn" style="padding:15px; font-size:1.2em;" onclick="addOptionToCourse(event, '${key}')">+ 옵션 추가</button>
+                        <button class="action-btn" style="padding:15px; font-size:1.2em; background:#400;" onclick="deleteCourse(event, '${key}')">코스 삭제</button>
+                     </div>`;
         }
         container.innerHTML = html;
     }
 
     function addOptionToCourse(e, key) {
         e.preventDefault();
-        const pos = document.getElementById('phone-frame-capture').scrollTop;
+        const pos = document.getElementById('phone-frame-capture').scrollTop; // scrollTop 유지
         coursesData[key].options.push({name: '새 옵션', price: 0});
         renderAdminEditor();
         document.getElementById('phone-frame-capture').scrollTop = pos;
-        setTimeout(() => {
+        setTimeout(() => { // scrollIntoView 복구
             const el = document.querySelector(`.admin-course-item[data-key="${key}"] .admin-option-item:last-child`);
             if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 50);
     }
 
     function deleteOption(key, idx) {
-        const pos = document.getElementById('phone-frame-capture').scrollTop;
+        const pos = document.getElementById('phone-frame-capture').scrollTop; // scrollTop 유지
         if(coursesData[key].options.length > 1) {
             coursesData[key].options.splice(idx, 1);
             renderAdminEditor();
@@ -386,7 +329,7 @@
         const key = 'custom' + newCourseIndex++;
         coursesData[key] = { title: '새 코스', time: '00분', basePrice: 0, options: [{name: '기본 옵션', price: 0}] };
         renderAdminEditor();
-        setTimeout(() => {
+        setTimeout(() => { // scrollIntoView 복구
             const el = document.querySelector(`.admin-course-item[data-key="${key}"]`);
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
@@ -396,8 +339,7 @@
         e.preventDefault();
         if(Object.keys(coursesData).length > 1) {
             if(confirm(`[${coursesData[key].title}] 코스를 삭제할까요?`)) {
-                delete coursesData[key];
-                renderAdminEditor();
+                delete coursesData[key]; renderAdminEditor();
             }
         } else { alert("최소 1개의 코스는 존재해야 합니다."); }
     }
@@ -411,54 +353,24 @@
             const basePrice = parseInt(item.querySelector('[data-field="basePrice"]').value) || 0;
             const opts = [];
             item.querySelectorAll('.admin-option-item').forEach(optEl => {
-                opts.push({
-                    name: optEl.querySelector('[data-opt-name]').value,
-                    price: parseInt(optEl.querySelector('[data-opt-price]').value) || 0
-                });
+                opts.push({ name: optEl.querySelector('[data-opt-name]').value, price: parseInt(optEl.querySelector('[data-opt-price]').value) || 0 });
             });
             newD[key] = { title, time, basePrice, options: opts };
         });
-        coursesData = newD;
-        saveCoursesData();
-        alert("✅ 시스템 설정이 저장되었습니다.");
-        renderCourseList();
+        coursesData = newD; saveCoursesData();
+        alert("✅ 시스템 설정이 저장되었습니다."); renderCourseList();
     }
 
-    // --- 5. 캡처 기능 (새 창 열기 로직 100% 복구) ---
+    // --- 5. 캡처 기능 (고해상도 + 새 창 열기 복구) ---
     function captureFrameAsPNG(id) {
         const el = document.getElementById(id);
         html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#0a0a0c' }).then(canvas => {
             const dataURL = canvas.toDataURL('image/png');
-            const newWin = window.open();
+            const newWin = window.open(); // 새 창 열기 로직
             newWin.document.write(`<img src="${dataURL}" style="max-width:100%;">`);
             newWin.document.title = "NOBLESSE_LIST";
             alert("✅ 목록 캡처 완료! 새 탭에서 이미지를 저장하세요.");
         });
-    }
-
-    function showFinalQuote() {
-        const c = coursesData[currentSelectedCourseKey];
-        let optsHtml = '';
-        let total = c.basePrice;
-        document.querySelectorAll('#options-list input:checked').forEach(cb => {
-            const p = parseInt(cb.dataset.price);
-            total += p;
-            const name = cb.nextElementSibling.querySelector('span').textContent;
-            optsHtml += `<li>${name} (₩ ${formatPrice(p)})</li>`;
-        });
-
-        document.getElementById('quote-details-content').innerHTML = `
-            <div class="quote-details">
-                <p><strong>COURSE:</strong> ${c.title}</p>
-                <p><strong>TIME:</strong> ${c.time}</p>
-                <p><strong>BASE:</strong> ₩ ${formatPrice(c.basePrice)}</p>
-            </div>
-            <div class="quote-options">
-                <h4>SELECTED OPTIONS</h4>
-                <ul>${optsHtml || '<li>No options selected</li>'}</ul>
-            </div>`;
-        document.getElementById('modal-total-price').textContent = formatPrice(total);
-        document.getElementById('final-quote-modal').style.display = 'flex';
     }
 
     function captureQuoteAsPNG() {
@@ -468,18 +380,33 @@
         html2canvas(target, { scale: 2, useCORS: true, backgroundColor: '#0a0a0c' }).then(canvas => {
             btn.style.display = 'block';
             const dataURL = canvas.toDataURL('image/png');
-            const newWin = window.open();
+            const newWin = window.open(); // 새 창 열기 로직
             newWin.document.write(`<img src="${dataURL}" style="max-width:100%;">`);
             newWin.document.title = "NOBLESSE_QUOTE";
         });
     }
 
+    function showFinalQuote() {
+        const c = coursesData[currentSelectedCourseKey];
+        let optsHtml = ''; let total = c.basePrice;
+        document.querySelectorAll('#options-list input:checked').forEach(cb => {
+            const p = parseInt(cb.dataset.price); total += p;
+            const name = cb.nextElementSibling.querySelector('span').textContent;
+            optsHtml += `<li>${name} (₩ ${formatPrice(p)})</li>`;
+        });
+        document.getElementById('quote-details-content').innerHTML = `
+            <div class="quote-details">
+                <p><strong>COURSE:</strong> ${c.title}</p><p><strong>TIME:</strong> ${c.time}</p>
+                <p><strong>BASE:</strong> ₩ ${formatPrice(c.basePrice)}</p>
+            </div>
+            <div class="quote-options"><h4>SELECTED OPTIONS</h4><ul>${optsHtml || '<li>No options selected</li>'}</ul></div>`;
+        document.getElementById('modal-total-price').textContent = formatPrice(total);
+        document.getElementById('final-quote-modal').style.display = 'flex';
+    }
+
     function closeFinalQuoteModal() { document.getElementById('final-quote-modal').style.display = 'none'; }
 
-    window.onload = () => {
-        loadCoursesData();
-        renderCourseList();
-    };
+    window.onload = () => { loadCoursesData(); renderCourseList(); };
 </script>
 </body>
 </html>
