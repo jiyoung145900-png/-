@@ -475,14 +475,26 @@
 
     function closeFinalQuoteModal() { document.getElementById('final-quote-modal').style.display = 'none'; }
 
-    function captureFrameAsPNG(id) {
-        if(isEditingMode) return alert("편집 모드 종료 후 캡처하세요.");
-        html2canvas(document.getElementById(id), { scale: 2, useCORS: true }).then(canvas => {
-            const win = window.open();
-            win.document.write(`<img src="${canvas.toDataURL('image/png')}" style="max-width:100%;">`);
-            alert("✅ 캡처 완료! 새 탭에서 확인하세요.");
-        });
-    }
+   function captureFrameAsPNG(id) {
+    if(isEditingMode) return alert("편집 모드 종료 후 캡처하세요.");
+    
+    const element = document.getElementById(id);
+    
+    html2canvas(element, { 
+        scale: 2, 
+        useCORS: true,
+        // 2~3mm 흰 부분을 없애기 위해 사방 3px씩 안쪽을 캡처합니다.
+        x: 3, 
+        y: 3, 
+        width: element.offsetWidth - 6, 
+        height: element.offsetHeight - 6,
+        backgroundColor: null // 배경을 투명하게 처리하여 외곽선 방지
+    }).then(canvas => {
+        const win = window.open();
+        win.document.write(`<img src="${canvas.toDataURL('image/png')}" style="max-width:100%;">`);
+        // alert 부분을 삭제하여 바로 새 탭만 뜨게 만들었습니다.
+    });
+}
 
     function captureQuoteAsPNG() {
         showFinalQuote();
