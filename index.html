@@ -134,117 +134,111 @@
         .admin-option-item input { margin: 0; }
         .admin-option-item button { width: 20%; background: #333; color: #fff; border: 1px solid #555; cursor: pointer; }
 
-        /* --- 5. 상세 보기 및 옵션 선택 스타일 --- */
+/* --- 5. 상세 보기 및 옵션 선택 스타일 --- */
         #detail-view { 
-    display: none; 
-    flex-direction: column; 
-    background-color: rgba(20, 20, 22, 0.95); 
-    padding: 30px; 
-    border-radius: 4px; 
-    border: 1px solid #333;
-}
+            display: none; 
+            flex-direction: column; 
+            background-color: rgba(20, 20, 22, 0.95); 
+            padding: 30px; 
+            border-radius: 4px; 
+            border: 1px solid #333;
+        }
 
-#detail-view h3 { 
-    color: var(--noble-gold); 
-    font-size: 2.5em; 
-    margin-bottom: 5px; 
-    text-align: center; 
-}
+        #detail-view h3 { 
+            color: var(--noble-gold); 
+            font-size: 2.5em; 
+            margin-bottom: 5px; 
+            text-align: center; 
+        }
 
-#detail-view p { 
-    color: #888; 
-    border-bottom: 1px solid #333; 
-    padding-bottom: 20px; 
-    margin-bottom: 30px; 
-    text-align: center; 
-}
+        #detail-view p { 
+            color: #888; 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 20px; 
+            margin-bottom: 30px; 
+            text-align: center; 
+        }
 
-#options-list h3 { 
-    color: #fff; 
-    font-size: 1.5em; 
-    text-align: left; 
-    margin-top: 20px; 
-    border-left: 3px solid var(--noble-gold); 
-    padding-left: 10px; 
-}
+        #options-list h3 { 
+            color: #fff; 
+            font-size: 1.5em; 
+            text-align: left; 
+            margin-top: 20px; 
+            border-left: 3px solid var(--noble-gold); 
+            padding-left: 10px; 
+        }
 
-/* 개별 옵션 아이템 줄 */
-.option-item { 
-    display: flex; 
-    align-items: center; 
-    padding: 15px; 
-    margin-bottom: 10px; 
-    background: #111; 
-    border: 1px solid #222; 
-    border-radius: 4px; 
-    transition: 0.2s;
-}
+        .option-item { 
+            display: flex; 
+            align-items: center; 
+            padding: 15px; 
+            margin-bottom: 10px; 
+            background: #111; 
+            border: 1px solid #222; 
+            border-radius: 4px; 
+            transition: 0.2s;
+        }
 
-.option-item:hover { 
-    border-color: #555; 
-}
+        .option-item:hover { border-color: #555; }
 
-/* 체크박스 크기 조절 */
-.option-item input[type="checkbox"] { 
-    width: 25px; 
-    height: 25px; 
-    margin-right: 15px; 
-    accent-color: var(--noble-gold); 
-    cursor: pointer;
-}
+        .option-item input[type="checkbox"] { 
+            width: 30px; /* 체크박스 크기 더 키움 */
+            height: 30px; 
+            margin-right: 15px; 
+            accent-color: var(--noble-gold); 
+            cursor: pointer;
+        }
 
-/* 옵션 글씨 크기 (크게 설정됨) */
-.option-item label { 
-    cursor: pointer; 
-    width: 100%; 
-    display: flex; 
-    justify-content: space-between; 
-    font-size: 1.5em; 
-    font-weight: bold; 
-    color: #eee; 
-}
+        .option-item label { 
+            cursor: pointer; 
+            width: 100%; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 1.6em; /* 옵션 글씨 크기 확대 */
+            font-weight: bold; 
+            color: #eee; 
+        }
 
-/* 옵션 내 가격(+₩ 5,000 등) 빨간색 강조 */
-.option-item label span {
-    color: #ff4d4d; 
-    font-size: 1.1em; 
-}
+        .option-item label span { color: #ff4d4d; font-size: 1.1em; }
 
-/* 하단 총 합계 금액 표시란 */
-#total-display { 
-    background-color: var(--noble-gold); 
-    color: #000; 
-    padding: 20px; 
-    margin-top: 30px; 
-    border-radius: 4px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    font-weight: bold;
-}
+        /* 예상 견적 합계 영역 */
+        #total-display { 
+            background-color: var(--noble-gold); 
+            color: #000; 
+            padding: 25px; 
+            margin-top: 30px; 
+            border-radius: 4px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-weight: bold;
+            font-size: 1.6em; /* '합계 금액' 글자 키움 */
+        }
 
-#current-total-price { 
-    font-size: 2.2em; /* 조금 더 키웠습니다 */
-    font-weight: 900; 
-}
+        #current-total-price { font-size: 2.8em; font-weight: 900; }
 
-/* 하단 버튼 스타일 */
-.action-btn { 
-    width: 100%; 
-    padding: 15px; 
-    margin-top: 20px; 
-    background: #222; 
-    color: #fff; 
-    border: 1px solid #444; 
-    cursor: pointer; 
-    font-weight: bold; 
-    transition: 0.3s; 
-}
+        /* 목록으로 돌아가기 버튼 */
+        .action-btn { 
+            width: 100%; 
+            padding: 20px; 
+            margin-top: 20px; 
+            background: #222; 
+            color: #fff; 
+            border: 1px solid #444; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 1.8em; /* 버튼 글씨 대폭 확대 */
+            border-radius: 8px;
+            transition: 0.3s; 
+        }
+        .action-btn:hover { background: #fff; color: #000; }
 
-.action-btn:hover { 
-    background: #fff; 
-    color: #000; 
-}
+        /* --- 6. 최종 견적서(보증서) 모달 스타일 --- (생략된 경우 추가하세요) */
+        /* ... 기존 모달 스타일 ... */
+
+    </style>
+</head>
+<body>
         /* --- 6. 최종 견적서(보증서) 모달 스타일 --- */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
@@ -264,23 +258,51 @@
             border: 1px solid rgba(212, 175, 55, 0.3); pointer-events: none;
         }
 
-        .quote-header { text-align: center; border-bottom: 1px solid var(--noble-gold); padding-bottom: 20px; margin-bottom: 20px; }
-        .quote-header h3 { color: var(--noble-gold); letter-spacing: 5px; margin: 0; }
-        
-        .quote-details p { margin: 10px 0; color: #ccc; }
-        .quote-details strong { color: var(--noble-gold); display: inline-block; width: 100px; }
-        
-        .quote-options { margin-top: 20px; background: #111; padding: 15px; }
-        .quote-options h4 { color: #fff; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0; }
-        .quote-options ul { list-style: none; padding: 0; margin: 0; }
-        .quote-options li { padding: 5px 0; color: #aaa; border-bottom: 1px solid #222; }
-        .quote-options li:last-child { border-bottom: none; }
-        .quote-options li::before { content: "⚜️ "; color: var(--noble-gold); margin-right: 5px; }
+.quote-header h3 { 
+    color: var(--noble-gold); 
+    letter-spacing: 5px; 
+    margin: 0; 
+    font-size: 2em;      /* 보증서 제목 크기 확대 */
+}
 
-        .final-total { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--noble-gold); }
-        .final-total p { margin: 0 0 10px 0; color: #888; font-size: 0.9em; letter-spacing: 2px; }
-        .final-total .total-price { font-size: 2.5em; font-weight: 900; color: var(--noble-gold); }
+.quote-details p { 
+    margin: 15px 0;      /* 간격 넓힘 */
+    color: #ccc; 
+    font-size: 1.3em;    /* 상세 내용 글씨 확대 */
+}
 
+.quote-details strong { 
+    color: var(--noble-gold); 
+    display: inline-block; 
+    width: 120px;        /* 간격 조정 */
+}
+
+.quote-options { 
+    margin-top: 20px; 
+    background: #111; 
+    padding: 20px; 
+}
+
+.quote-options h4 { 
+    font-size: 1.4em;    /* '선택 옵션' 제목 확대 */
+    color: #fff; 
+    border-bottom: 1px solid #333; 
+    padding-bottom: 10px; 
+    margin-top: 0; 
+}
+
+.quote-options li { 
+    padding: 8px 0;      /* 옵션 간격 확대 */
+    color: #aaa; 
+    font-size: 1.2em;    /* 옵션 글씨 확대 */
+    border-bottom: 1px solid #222; 
+}
+
+.final-total .total-price { 
+    font-size: 3.5em;    /* 마지막 최종 금액 대폭 확대 */
+    font-weight: 900; 
+    color: var(--noble-gold); 
+}
         #modal-close-btn { background: #333; color: #fff; border: none; margin-top: 25px; padding: 15px; width: 100%; cursor: pointer; }
         #modal-close-btn:hover { background: var(--noble-gold); color: #000; }
     </style>
