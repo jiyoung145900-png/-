@@ -112,7 +112,7 @@
         }
         .course-item:active { transform: scale(0.98); }
         .course-item .course-title { 
-            font-size: 1.6em; /* 코스 이름 크게 */
+            font-size: 1.45em; /* 코스 이름 크게 */
             font-weight: bold;
             color: #d11e8a; 
         }
@@ -239,11 +239,36 @@
 
 <script>
     const INITIAL_COURSES = {
-        'sapphire': { title: '사파이어', time: '1시간', basePrice: 50000, options: [{name: '로리플', price: 20000}, {name: '애널', price: 15000}, {name: '코스추가1', price: 10000}] },
-        'emerald': { title: '에메랄드', time: '2시간', basePrice: 180000, options: [{name: '프리미엄 공간', price: 30000}] },
-        'ruby': { title: '루비', time: '4시간', basePrice: 350000, options: [{name: '장소 변경 협의', price: 50000}] },
-        'diamond': { title: '다이아몬드', time: '8시간', basePrice: 600000, options: [{name: '24시간 컨시어지', price: 100000}] },
-        'topaz': { title: '토파즈', time: '24시간', basePrice: 1200000, options: [{name: '종일 풀 패키지', price: 0}] }
+        'sapphire': { 
+            title: '🔹 사파이어 [10만 → 5만]', 
+            time: '1시간', 
+            basePrice: 50000, 
+            options: [{name: '기본 마사지', price: 0}, {name: '핸드잡', price: 15000}, {name: '입싸/얼싸', price: 5000}, {name: '니플 플레이', price: 10000}] 
+        },
+        'emerald': { 
+            title: '💚 에메랄드 [18만 → 9만]', 
+            time: '2시간', 
+            basePrice: 90000, 
+            options: [{name: '기본 마사지', price: 0}, {name: '파이즈리', price: 20000}, {name: '전신 바디 타기', price: 20000}, {name: '무한 오랄 (BJ)', price: 30000}] 
+        },
+        'ruby': { 
+            title: '💖 루비 [36만 → 18만]', 
+            time: '4시간', 
+            basePrice: 180000, 
+            options: [{name: '기본 마사지', price: 0}, {name: '질내 사정 (질싸)', price: 30000}, {name: '노콘 옵션', price: 20000}, {name: '애널 (뒤태 공략)', price: 50000}, {name: '중출 (사정 후 입맞춤)', price: 20000}] 
+        },
+        'diamond': { 
+            title: '💎 다이아 [100만 → 50만]', 
+            time: '12시간', 
+            basePrice: 500000, 
+            options: [{name: '기본 마사지', price: 0}, {name: '코스튬 (교복/간호사/경찰)', price: 10000}, {name: '수치플 / 똥까시', price: 30000}, {name: '안대 & 개갈기 사용', price: 20000}] 
+        },
+        'topaz': { 
+            title: '🔶 토파즈 [200만 → 100만]', 
+            time: '24시간', 
+            basePrice: 1000000, 
+            options: [{name: '기본 마사지', price: 0}, {name: '본디지 (결박 플레이)', price: 40000}, {name: 'SM 플레이 / 강간플', price: 70000}, {name: '노예 플레이 (1:1 맞춤 하드)', price: 70000}] 
+        },
     };
 
     let coursesData; 
