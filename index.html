@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOBLESSE | VIP PRICE LIST</title>
+    <title>NOBLESSE | VIP 가격표</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* --- 1. 노블레스 테마 기본 설정 --- */
+        /* --- 1. 노블레스 테마 디자인 (블랙 & 골드) --- */
         :root {
             --noble-gold: #D4AF37;       /* 메인 골드 */
-            --noble-gold-dim: #aa8c2c;   /* 어두운 골드 */
-            --noble-black: #0a0a0c;      /* 배경 블랙 */
-            --noble-dark-gray: #1a1a1d;  /* 컨테이너 배경 */
-            --noble-text: #f0f0f0;       /* 기본 텍스트 */
-            --noble-red: #800000;        /* 강조 레드 */
+            --noble-gold-dim: #aa8c2c;   /* 차분한 골드 */
+            --noble-black: #0a0a0c;      /* 딥 블랙 배경 */
+            --noble-dark-gray: #1a1a1d;  /* 요소 배경 */
+            --noble-text: #f0f0f0;       /* 기본 텍스트 (화이트 계열) */
+            --noble-red: #800000;        /* 경고/강조 레드 */
         }
 
         body { 
-            font-family: 'Pretendard', 'Malgun Gothic', serif; /* 고급스러운 폰트 우선 */
+            font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', serif;
             margin: 0; padding: 0; 
             display: flex; justify-content: center; 
             background-color: #000000; 
@@ -33,13 +33,13 @@
             margin-bottom: 20px;
         }
 
-        /* 폰 프레임: 골드 테두리와 깊은 검정 배경 */
+        /* 스마트폰 프레임 디자인 */
         .phone-frame {
             width: 680px;
             height: 1248px; 
             overflow-y: auto; 
             background-color: var(--noble-black);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15); /* 은은한 골드 광 */
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15); /* 은은한 골드 빛 */
             border: 2px solid var(--noble-gold);
             border-radius: 20px;
             padding: 30px 25px; 
@@ -47,12 +47,12 @@
             position: relative;
         }
         
-        /* 스크롤바 커스텀 (노블레스 스타일) */
+        /* 스크롤바 디자인 */
         .phone-frame::-webkit-scrollbar { width: 8px; }
         .phone-frame::-webkit-scrollbar-track { background: #000; }
         .phone-frame::-webkit-scrollbar-thumb { background: var(--noble-gold-dim); border-radius: 4px; }
 
-        /* 배경 패턴 (고급스러운 다크 패턴) */
+        /* 배경 패턴 (고급스러운 질감) */
         #main-background {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -65,7 +65,7 @@
         
         #course-list-view, #detail-view, #admin-view { position: relative; z-index: 1; }
 
-        /* --- 2. 제어 버튼 그룹 (우측 외부) --- */
+        /* --- 2. 우측 제어 버튼 그룹 --- */
         #control-buttons {
             position: absolute;
             top: 30px; right: -180px; 
@@ -80,7 +80,6 @@
             background-color: #111; color: var(--noble-gold);
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             transition: all 0.3s;
-            text-transform: uppercase; letter-spacing: 1px;
         }
 
         #control-buttons button:hover {
@@ -88,7 +87,7 @@
             color: #000;
         }
 
-        /* 버튼별 고유 색상 재정의 (노블레스 테마에 맞게 조정) */
+        /* 버튼별 스타일 미세 조정 */
         #toggle-admin-btn { border-color: #666; color: #aaa; }
         #save-admin-changes-btn { background-color: #1b5e20 !important; color: #fff !important; display: none; border: none; }
         #capture-list-btn, #capture-quote-btn { border-color: var(--noble-gold); }
@@ -96,13 +95,13 @@
         #save-options-btn { border-color: #888; color: #ccc; }
 
         .admin-mode-active {
-            background-color: #5a0000 !important; /* 짙은 레드 */
+            background-color: #5a0000 !important; /* 관리자 모드 활성 시 붉은색 */
             color: #ffcccc !important;
             border-color: #ff0000 !important;
         }
-        .detail-only { display: none; }
+        .detail-only { display: none; } /* 상세화면 전용 버튼 숨김 클래스 */
 
-        /* --- 3. 코스 목록 스타일 --- */
+        /* --- 3. 코스 목록 화면 스타일 --- */
         .course-list-header { 
             color: var(--noble-gold); text-align: center; 
             font-size: 1.8em; margin-top: 100px; margin-bottom: 50px; 
@@ -128,7 +127,7 @@
         .course-item .course-info span { display: block; }
         .course-item .course-price { font-size: 1.3em; font-weight: 800; color: #fff; margin-top: 8px; }
 
-        /* --- 4. 관리자 모드 스타일 --- */
+        /* --- 4. 관리자(수정) 모드 스타일 --- */
         #admin-view { 
             display: none; background-color: #121212; 
             padding: 20px; border-radius: 10px; margin-top: 20px; 
@@ -140,18 +139,18 @@
             background-color: #1e1e1e; padding: 15px; margin-bottom: 15px; 
             border-radius: 4px; border: 1px solid #333; 
         }
-        .admin-course-item h4 { color: #ccc; margin-top: 0; }
-        .admin-course-item label { color: #888; font-size: 0.8em; }
+        .admin-course-item h4 { color: #ccc; margin-top: 0; margin-bottom: 10px;}
+        .admin-course-item label { color: #888; font-size: 0.8em; display:block; margin-top:5px;}
         
         .admin-course-item input { 
-            width: calc(100% - 10px); padding: 10px; margin: 5px 0 15px 0; 
+            width: calc(100% - 22px); padding: 10px; margin: 5px 0 10px 0; 
             background: #000; border: 1px solid #444; color: #fff; 
         }
         .admin-option-item { display: flex; gap: 10px; margin-bottom: 5px; align-items: center; }
         .admin-option-item input { margin: 0; }
         .admin-option-item button { width: 20%; background: #333; color: #fff; border: 1px solid #555; cursor: pointer; }
 
-        /* --- 5. 상세 뷰 및 옵션 스타일 --- */
+        /* --- 5. 상세 보기 및 옵션 선택 스타일 --- */
         #detail-view { 
             display: none; flex-direction: column; 
             background-color: rgba(20, 20, 22, 0.95); 
@@ -186,7 +185,7 @@
         }
         .action-btn:hover { background: #fff; color: #000; }
 
-        /* --- 6. 최종 견적 모달 (보증서 스타일) --- */
+        /* --- 6. 최종 견적서(보증서) 모달 스타일 --- */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background-color: rgba(0, 0, 0, 0.9); z-index: 2000; 
@@ -199,7 +198,7 @@
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
             color: #fff; position: relative;
         }
-        /* 보증서 장식 */
+        /* 보증서 내부 테두리 장식 */
         .modal-content::before {
             content: ''; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px;
             border: 1px solid rgba(212, 175, 55, 0.3); pointer-events: none;
@@ -238,35 +237,35 @@
         </div>
 
         <div id="admin-view">
-            <h3>System Management</h3>
+            <h3>시스템 관리자</h3>
             <div id="admin-course-editor"></div>
-            <button class="action-btn" style="background-color:var(--noble-gold); color:#000; margin-top:0;" onclick="addNewCourse(event)">+ ADD NEW COURSE</button>
+            <button class="action-btn" style="background-color:var(--noble-gold); color:#000; margin-top:0;" onclick="addNewCourse(event)">+ 새 코스 추가</button>
         </div>
 
         <div id="detail-view">
             <h3 id="detail-title-selected"></h3>
-            <p>[ <span id="detail-time-selected"></span> | Basic Price: ₩<span id="detail-price-selected-val">0</span> ]</p>
+            <p>[ <span id="detail-time-selected"></span> | 기본가: ₩<span id="detail-price-selected-val">0</span> ]</p>
 
             <div id="options-list"></div>
             
             <div id="total-display">
-                <span>TOTAL ESTIMATE</span>
+                <span>예상 견적 합계</span>
                 <span id="current-total-price">₩ 0</span>
             </div>
 
-            <button id="back-btn" class="action-btn" onclick="showCourseList()">BACK TO LIST</button>
+            <button id="back-btn" class="action-btn" onclick="showCourseList()">목록으로 돌아가기</button>
         </div>
     </div>
     
     <div id="control-buttons">
-        <button id="toggle-admin-btn" onclick="toggleAdminMode()">SYSTEM EDIT</button>
-        <button id="save-admin-changes-btn" onclick="saveAdminChanges()">SAVE CHANGES</button>
+        <button id="toggle-admin-btn" onclick="toggleAdminMode()">관리자 모드</button>
+        <button id="save-admin-changes-btn" onclick="saveAdminChanges()">변경사항 저장</button>
         
-        <button id="capture-list-btn" onclick="captureFrameAsPNG('phone-frame-capture')">CAPTURE LIST</button>
+        <button id="capture-list-btn" onclick="captureFrameAsPNG('phone-frame-capture')">목록 이미지 저장</button>
         
-        <button id="show-quote-btn" class="detail-only" onclick="showFinalQuote()">VIEW CERTIFICATE</button>
-        <button id="capture-quote-btn" class="detail-only" onclick="captureQuoteAsPNG()">CAPTURE CERT.</button>
-        <button id="save-options-btn" class="detail-only" onclick="saveUserSelectionsManually()">SAVE OPTIONS</button>
+        <button id="show-quote-btn" class="detail-only" onclick="showFinalQuote()">견적서 보기</button>
+        <button id="capture-quote-btn" class="detail-only" onclick="captureQuoteAsPNG()">견적서 캡처</button>
+        <button id="save-options-btn" class="detail-only" onclick="saveUserSelectionsManually()">선택사항 저장</button>
     </div>
 </div>
 
@@ -279,22 +278,22 @@
         <div id="quote-details-content"></div>
         
         <div class="final-total">
-            <p>FINAL AMOUNT</p>
+            <p>최종 결제 예정 금액</p>
             <div class="total-price">₩ <span id="modal-total-price">0</span></div>
         </div>
         
-        <button id="modal-close-btn" onclick="closeFinalQuoteModal()">CLOSE</button>
+        <button id="modal-close-btn" onclick="closeFinalQuoteModal()">닫기</button>
     </div>
 </div>
 
 <script>
-    // --- 1. 초기 데이터 설정 (노블레스 컨셉에 맞게 이름 변경, 구조는 동일) ---
+    // --- 1. 초기 데이터 설정 (모두 한글로 변경됨) ---
     const INITIAL_COURSES = {
-        'sapphire': { title: 'SAPPHIRE', time: '60 MIN', basePrice: 150000, options: [{name: 'Signature Care', price: 30000}, {name: 'Aroma Therapy', price: 20000}] },
-        'emerald': { title: 'EMERALD', time: '90 MIN', basePrice: 220000, options: [{name: 'Premium Oil', price: 30000}, {name: 'Foot Care', price: 15000}] },
-        'ruby': { title: 'RUBY', time: '120 MIN', basePrice: 350000, options: [{name: 'VIP Suite Upgrade', price: 50000}, {name: 'Champagne Service', price: 80000}] },
-        'diamond': { title: 'DIAMOND', time: '180 MIN', basePrice: 600000, options: [{name: 'Full Concierge', price: 100000}, {name: 'Imperial Treatment', price: 50000}] },
-        'black': { title: 'THE BLACK', time: 'ALL DAY', basePrice: 1500000, options: [{name: 'All Inclusive', price: 0}, {name: 'Private Limo', price: 200000}] }
+        'sapphire': { title: '사파이어 코스', time: '60분', basePrice: 150000, options: [{name: '시그니처 케어', price: 30000}, {name: '아로마 테라피', price: 20000}] },
+        'emerald': { title: '에메랄드 코스', time: '90분', basePrice: 220000, options: [{name: '프리미엄 오일', price: 30000}, {name: '풋 케어 추가', price: 15000}] },
+        'ruby': { title: '루비 코스', time: '120분', basePrice: 350000, options: [{name: 'VIP 스위트룸', price: 50000}, {name: '웰컴 드링크', price: 10000}] },
+        'diamond': { title: '다이아몬드 코스', time: '180분', basePrice: 600000, options: [{name: '전담 컨시어지', price: 100000}, {name: '임페리얼 트리트먼트', price: 50000}] },
+        'black': { title: '더 블랙 (VVIP)', time: '종일', basePrice: 1500000, options: [{name: '올 인클루시브', price: 0}, {name: '프라이빗 픽업', price: 200000}] }
     };
     
     let coursesData; 
@@ -302,14 +301,14 @@
     let isEditingMode = false;
     let newCourseIndex = 0; 
     
-    // 유틸리티: 가격 포맷
+    // 가격 포맷 함수 (한국 원화 표기)
     const formatPrice = (price) => price.toLocaleString('ko-KR');
 
-    // --- 2. 저장/로드 로직 (기능 100% 보존) ---
+    // --- 2. 데이터 저장/불러오기 로직 (핵심 기능 유지) ---
     function loadCoursesData() {
-        // 기존 데이지 데이터와 충돌 방지를 위해 키 이름 변경 (noblesse...)
-        const savedData = localStorage.getItem('noblesseCoursesData');
-        const savedIndex = localStorage.getItem('noblesseNewCourseIndex'); 
+        // 기존 데이터와 충돌 방지를 위해 키값 변경
+        const savedData = localStorage.getItem('noblesseCoursesData_KR');
+        const savedIndex = localStorage.getItem('noblesseNewCourseIndex_KR'); 
 
         if (savedData) {
             try {
@@ -324,14 +323,14 @@
     }
     
     function saveCoursesData() {
-        localStorage.setItem('noblesseCoursesData', JSON.stringify(coursesData));
-        localStorage.setItem('noblesseNewCourseIndex', newCourseIndex); 
+        localStorage.setItem('noblesseCoursesData_KR', JSON.stringify(coursesData));
+        localStorage.setItem('noblesseNewCourseIndex_KR', newCourseIndex); 
     }
 
-    // [자동 저장] 로직
+    // [자동 저장 기능]
     function saveUserSelection() {
         if (!currentSelectedCourseKey) return;
-        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections');
+        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections_KR');
         let savedSelections = {};
         try { savedSelections = savedSelectionsRaw ? JSON.parse(savedSelectionsRaw) : {}; } catch (e) { console.error(e); }
         
@@ -341,31 +340,31 @@
         });
         
         savedSelections[currentSelectedCourseKey] = { selectedOptions: selectedOptions };
-        localStorage.setItem('noblesseUserSelections', JSON.stringify(savedSelections));
-        console.log(`✅ [${coursesData[currentSelectedCourseKey]?.title}] Saved automatically.`);
+        localStorage.setItem('noblesseUserSelections_KR', JSON.stringify(savedSelections));
+        console.log(`✅ [${coursesData[currentSelectedCourseKey]?.title}] 자동 저장됨.`);
     }
     
-    // [수동 저장] 버튼용 함수
+    // [수동 저장 버튼 기능]
     function saveUserSelectionsManually() {
-        if (!currentSelectedCourseKey) { alert("No course selected."); return; }
+        if (!currentSelectedCourseKey) { alert("선택된 코스가 없습니다."); return; }
         saveUserSelection(); 
-        alert(`✅ Options for [${coursesData[currentSelectedCourseKey].title}] have been saved.`);
+        alert(`✅ [${coursesData[currentSelectedCourseKey].title}]의 옵션이 저장되었습니다.`);
     }
 
-    // --- 3. 뷰 렌더링 로직 ---
+    // --- 3. 화면 그리기 (Rendering) ---
     function renderCourseList() {
         document.getElementById('course-list-view').style.display = 'block';
         document.getElementById('detail-view').style.display = 'none';
         document.getElementById('admin-view').style.display = 'none'; 
         
         const toggleBtn = document.getElementById('toggle-admin-btn');
-        toggleBtn.textContent = 'SYSTEM EDIT';
+        toggleBtn.textContent = '관리자 모드';
         toggleBtn.classList.remove('admin-mode-active');
         
         document.getElementById('capture-list-btn').style.display = 'block'; 
         document.getElementById('save-admin-changes-btn').style.display = 'none';
 
-        // 상세 페이지 전용 버튼 숨김 처리
+        // 상세 화면 전용 버튼 숨김
         document.querySelectorAll('.detail-only').forEach(el => el.style.display = 'none');
 
         const itemsContainer = document.getElementById('course-items-container');
@@ -393,7 +392,7 @@
         closeFinalQuoteModal();
     }
 
-    // --- 4. 관리자 편집 모드 로직 (스크롤 등 세부 기능 포함) ---
+    // --- 4. 관리자 편집 모드 (스크롤 유지 등 디테일 기능 포함) ---
     function toggleAdminMode() {
         isEditingMode = !isEditingMode;
         if (isEditingMode) {
@@ -402,18 +401,17 @@
             document.getElementById('admin-view').style.display = 'block';
             
             const toggleBtn = document.getElementById('toggle-admin-btn');
-            toggleBtn.textContent = 'CANCEL (NO SAVE)';
+            toggleBtn.textContent = '취소 (저장안함)';
             toggleBtn.classList.add('admin-mode-active');
             
             document.getElementById('save-admin-changes-btn').style.display = 'block'; 
             document.getElementById('capture-list-btn').style.display = 'none'; 
             
-            // 상세 페이지 버튼들 숨김
             document.querySelectorAll('.detail-only').forEach(el => el.style.display = 'none');
 
             renderAdminEditor();
         } else {
-            if(confirm("Exit without saving changes?")) {
+            if(confirm("저장하지 않고 편집을 종료하시겠습니까?")) {
                 loadCoursesData();
                 renderCourseList();
             } else {
@@ -424,13 +422,14 @@
 
     function deleteOptionFromCourse(courseKey, index) {
         if (coursesData[courseKey].options.length === 1) {
-            alert("At least one option is required.");
+            alert("최소 하나의 옵션은 있어야 합니다.");
             return;
         }
-        // 스크롤 위치 보존 로직
+        // 스크롤 위치 저장
         const scrollPosition = document.getElementById('phone-frame-capture').scrollTop;
         coursesData[courseKey].options.splice(index, 1);
         renderAdminEditor();
+        // 스크롤 위치 복원
         document.getElementById('phone-frame-capture').scrollTop = scrollPosition;
     }
     
@@ -438,10 +437,10 @@
         if (event) event.preventDefault();
         if (!coursesData[courseKey].options) coursesData[courseKey].options = [];
         
-        coursesData[courseKey].options.push({name: 'New Option', price: 0}); 
+        coursesData[courseKey].options.push({name: '새 옵션', price: 0}); 
         renderAdminEditor();
 
-        // 새 옵션 위치로 스크롤 이동 로직
+        // 새로 추가된 옵션으로 스크롤 이동
         const courseElement = document.querySelector(`.admin-course-item[data-key="${courseKey}"]`);
         if (courseElement) {
             const optionsContainer = courseElement.querySelector('.admin-option-item:last-child');
@@ -456,25 +455,25 @@
             const course = coursesData[key];
             html += `
                 <div class="admin-course-item" data-key="${key}">
-                    <h4>${course.title} (${key})</h4>
-                    <label>Title:</label><input type="text" data-field="title" value="${course.title}">
-                    <label>Time:</label><input type="text" data-field="time" value="${course.time}">
-                    <label>Base Price:</label><input type="number" data-field="basePrice" value="${course.basePrice}">
+                    <h4>${course.title}</h4>
+                    <label>코스명:</label><input type="text" data-field="title" value="${course.title}">
+                    <label>시간:</label><input type="text" data-field="time" value="${course.time}">
+                    <label>기본 가격:</label><input type="number" data-field="basePrice" value="${course.basePrice}">
                     
-                    <label style="display:block; margin-bottom:5px; color:var(--noble-gold);">Options:</label>
+                    <label style="display:block; margin-bottom:5px; color:var(--noble-gold);">옵션 목록:</label>
                     <div class="admin-options-container">
             `;
             course.options.forEach((opt, index) => {
                 html += `
                     <div class="admin-option-item" data-index="${index}">
-                        <input type="text" value="${opt.name}" data-opt-field="name" style="width:50%">
-                        <input type="number" value="${opt.price}" data-opt-field="price" style="width:30%">
-                        <button onclick="deleteOptionFromCourse('${key}', ${index})">DEL</button>
+                        <input type="text" value="${opt.name}" data-opt-field="name" style="width:50%" placeholder="옵션명">
+                        <input type="number" value="${opt.price}" data-opt-field="price" style="width:30%" placeholder="가격">
+                        <button onclick="deleteOptionFromCourse('${key}', ${index})">삭제</button>
                     </div>`;
             });
             html += `</div>
-                    <button style="width:100%; padding:10px; background:#333; color:white; border:none; margin-top:10px;" onclick="addOptionToCourse(event, '${key}')">+ ADD OPTION</button>
-                    <button style="width:100%; padding:10px; background:#800000; color:white; border:none; margin-top:5px;" onclick="deleteCourse(event, '${key}')">DELETE COURSE</button>
+                    <button style="width:100%; padding:10px; background:#333; color:white; border:none; margin-top:10px;" onclick="addOptionToCourse(event, '${key}')">+ 옵션 추가</button>
+                    <button style="width:100%; padding:10px; background:#800000; color:white; border:none; margin-top:5px;" onclick="deleteCourse(event, '${key}')">코스 삭제</button>
                 </div>`;
         }
         editorContainer.innerHTML = html;
@@ -489,11 +488,10 @@
             newKey = keyPrefix + newCourseIndex;
         }
         
-        coursesData[newKey] = { title: 'NEW COURSE', time: '00 MIN', basePrice: 0, options: [{name: 'Option 1', price: 0}] };
+        coursesData[newKey] = { title: '새 코스', time: '00분', basePrice: 0, options: [{name: '기본 옵션', price: 0}] };
         newCourseIndex++; 
         renderAdminEditor();
         
-        // 새 코스로 스크롤
         setTimeout(() => {
             const newEl = document.querySelector(`.admin-course-item[data-key="${newKey}"]`);
             if(newEl) newEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -502,10 +500,10 @@
     
     function deleteCourse(event, courseKey) {
         if (event) event.preventDefault();
-        if (Object.keys(coursesData).length === 1) { alert("Cannot delete the last course."); return; }
+        if (Object.keys(coursesData).length === 1) { alert("최소 하나의 코스는 있어야 합니다."); return; }
         
         const scrollPosition = document.getElementById('phone-frame-capture').scrollTop;
-        if (confirm(`Delete course [${coursesData[courseKey].title}]?`)) {
+        if (confirm(`[${coursesData[courseKey].title}] 코스를 삭제하시겠습니까?`)) {
             delete coursesData[courseKey];
             renderAdminEditor();
             document.getElementById('phone-frame-capture').scrollTop = scrollPosition;
@@ -540,13 +538,13 @@
         coursesData = newCoursesData;
         newCourseIndex = maxNewIndex; 
         saveCoursesData(); 
-        alert("✅ System updated successfully.");
+        alert("✅ 시스템 설정이 저장되었습니다.");
         
         isEditingMode = false;
         renderCourseList();
     }
 
-    // --- 5. 사용자 인터랙션 및 계산 로직 ---
+    // --- 5. 사용자 동작 및 계산 로직 ---
     function selectCourse(key) {
         currentSelectedCourseKey = key;
         const course = coursesData[key];
@@ -572,7 +570,7 @@
 
     function renderOptions(options) {
         const optionsList = document.getElementById('options-list');
-        let html = '<h3>ADDITIONAL OPTIONS</h3>';
+        let html = '<h3>추가 옵션 선택</h3>';
         
         options.forEach((opt, index) => {
             html += `
@@ -587,8 +585,8 @@
         });
         optionsList.innerHTML = html;
         
-        // 저장된 선택 불러오기
-        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections');
+        // 이전에 저장된 선택값 불러오기
+        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections_KR');
         let savedSelections = {};
         try { savedSelections = savedSelectionsRaw ? JSON.parse(savedSelectionsRaw) : {}; } catch (e) {}
         
@@ -615,7 +613,7 @@
     }
 
     function showFinalQuote() {
-        if (!currentSelectedCourseKey) { alert("Please select a course first."); return; }
+        if (!currentSelectedCourseKey) { alert("코스를 먼저 선택해주세요."); return; }
         
         const course = coursesData[currentSelectedCourseKey];
         let totalPrice = course.basePrice;
@@ -630,13 +628,13 @@
 
         const detailContent = `
             <div class="quote-details">
-                <p><strong>COURSE:</strong> ${course.title}</p>
-                <p><strong>TIME:</strong> ${course.time}</p>
-                <p><strong>BASIC:</strong> ₩ ${formatPrice(course.basePrice)}</p>
+                <p><strong>코스명:</strong> ${course.title}</p>
+                <p><strong>소요시간:</strong> ${course.time}</p>
+                <p><strong>기본가:</strong> ₩ ${formatPrice(course.basePrice)}</p>
             </div>
             <div class="quote-options">
-                <h4>SELECTED OPTIONS</h4>
-                <ul>${selectedOptionsHtml || '<li>No options selected</li>'}</ul>
+                <h4>선택된 옵션</h4>
+                <ul>${selectedOptionsHtml || '<li>선택된 옵션 없음</li>'}</ul>
             </div>
         `;
         document.getElementById('quote-details-content').innerHTML = detailContent;
@@ -646,55 +644,56 @@
 
     function closeFinalQuoteModal() { document.getElementById('final-quote-modal').style.display = 'none'; }
 
-    // --- 6. 캡처 기능 (데이지 소스 코드 로직 완벽 반영) ---
+    // --- 6. 캡처 기능 (데이지 기능 100% 반영) ---
     function captureFrameAsPNG(captureElementOrId) {
         let captureElement = typeof captureElementOrId === 'string' ? document.getElementById(captureElementOrId) : null;
         if (!captureElement) return;
 
-        if (isEditingMode) { alert("Cannot capture in Edit Mode."); return; }
+        if (isEditingMode) { alert("관리자 모드에서는 캡처할 수 없습니다."); return; }
         
+        // 캡처 시작
         html2canvas(captureElement, {
-            scale: 2, 
+            scale: 2, // 고해상도
             useCORS: true,
-            backgroundColor: '#0a0a0c', // 노블레스 배경색 반영
-            ignoreElements: (node) => node.id === 'control-buttons', // 컨트롤 버튼 제외
+            backgroundColor: '#0a0a0c', // 노블레스 배경색
+            ignoreElements: (node) => node.id === 'control-buttons', // 우측 버튼 그룹 제외
             windowHeight: captureElement.scrollHeight,
             scrollY: -captureElement.scrollTop
         }).then(canvas => {
             const dataURL = canvas.toDataURL('image/png');
             const newWindow = window.open();
             newWindow.document.write('<img src="' + dataURL + '" style="max-width: 100%; height: auto;">');
-            newWindow.document.title = 'NOBLESSE LIST CAPTURE';
-            alert(`✅ List captured successfully. Check the new tab.`);
+            newWindow.document.title = '노블레스 가격표 캡처';
+            alert(`✅ 목록 캡처 완료! 새 탭에서 이미지를 저장하세요.`);
         }).catch(err => {
             console.error(err);
-            alert("❌ Capture failed.");
+            alert("❌ 캡처 실패.");
         });
     }
 
     function captureQuoteAsPNG() {
-        if (!currentSelectedCourseKey) { alert("Select a course first."); return; }
+        if (!currentSelectedCourseKey) { alert("코스를 선택해주세요."); return; }
         
         showFinalQuote(); 
         const modalContent = document.getElementById('modal-capture-target');
         const modalButton = document.getElementById('modal-close-btn');
-        modalButton.style.display = 'none'; // 닫기 버튼 숨김
+        modalButton.style.display = 'none'; // 캡처 시 '닫기' 버튼 숨김
         
         html2canvas(modalContent, {
             scale: 2, 
             useCORS: true,
             backgroundColor: '#0a0a0c'
         }).then(canvas => {
-            modalButton.style.display = 'block'; // 버튼 복구
+            modalButton.style.display = 'block'; // 버튼 다시 보이기
             const dataURL = canvas.toDataURL('image/png');
             const newWindow = window.open();
             newWindow.document.write('<img src="' + dataURL + '" style="max-width: 100%; height: auto;">');
-            newWindow.document.title = 'NOBLESSE CERTIFICATE CAPTURE';
-            alert(`✅ Certificate captured successfully.`);
+            newWindow.document.title = '노블레스 견적서 캡처';
+            alert(`✅ 견적서 캡처 완료!`);
         }).catch(err => {
             modalButton.style.display = 'block';
             console.error(err);
-            alert("❌ Capture failed.");
+            alert("❌ 견적서 캡처 실패.");
         });
     }
 
