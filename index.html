@@ -287,13 +287,64 @@
 </div>
 
 <script>
-    // --- 1. 초기 데이터 설정 (모두 한글로 변경됨) ---
+    // --- 1. 초기 데이터 설정 (수정된 문법 반영) ---
     const INITIAL_COURSES = {
-        'sapphire': { title: '사파이어 코스', time: '1시간', basePrice: 50000, options: [{name: '기본 마사지', price: 0}, {name: '핸드잡', price: 0}, {name: '입싸 / 얼싸', price: 5000}] }, {name: '니플 플레이', price: 10000}] },
-        'emerald': { title: '에메랄드 코스', time: '2시간', basePrice: 90000, options: [{name: '기본 마사지', price: 0}, {name: '파이즈리', price: 20000}, {name: '무한 오랄 (BJ)', price: 30000}] }, {name: '전신 바디 타기', price: 20000}] },
-        'ruby': { title: '루비 코스', time: '4시간', basePrice: 180000, options: [{name: '기본 마사지', price: 0}, {name: '질내 사정 (질싸)', price: 30000}, {name: '노콘 옵션', price: 20000}] }, {name: '애널 (뒤태 공략)', price: 50000}] }, {name: '중출 (사정 후 입맞춤)', price: 20000}] },
-        'diamond': { title: '다이아몬드 코스', time: '8시간', basePrice: 350000, options: [{name: '기본 마사지', price: 0}, {name: '코스튬 (교복/간호사/경찰)', price: 10000}, {name: '수치플 / 똥까시', price: 30000}] }, {name: '안대 & 개갈기 사용', price: 20000}] },
-        'black': { title: '더 블랙 (VVIP)', time: '24시간', basePrice: 800000, options: [{name: '기본 마사지', price: 0}, {name: '본디지 (결박 플레이)', price: 40000}, {name: 'SM 플레이 / 강간플', price: 70000}] }, {name: '노예 플레이 (1:1 맞춤 하드)', price: 80000}] },
+        'sapphire': { 
+            title: '사파이어 코스', 
+            time: '1시간', 
+            basePrice: 50000, 
+            options: [
+                {name: '기본 마사지', price: 0}, 
+                {name: '핸드잡', price: 0}, 
+                {name: '입싸 / 얼싸', price: 5000}, 
+                {name: '니플 플레이', price: 10000}
+            ] 
+        },
+        'emerald': { 
+            title: '에메랄드 코스', 
+            time: '2시간', 
+            basePrice: 90000, 
+            options: [
+                {name: '기본 마사지', price: 0}, 
+                {name: '파이즈리', price: 20000}, 
+                {name: '무한 오랄 (BJ)', price: 30000}, 
+                {name: '전신 바디 타기', price: 20000}
+            ] 
+        },
+        'ruby': { 
+            title: '루비 코스', 
+            time: '4시간', 
+            basePrice: 180000, 
+            options: [
+                {name: '기본 마사지', price: 0}, 
+                {name: '질내 사정 (질싸)', price: 30000}, 
+                {name: '노콘 옵션', price: 20000}, 
+                {name: '애널 (뒤태 공략)', price: 50000}, 
+                {name: '중출 (사정 후 입맞춤)', price: 20000}
+            ] 
+        },
+        'diamond': { 
+            title: '다이아몬드 코스', 
+            time: '8시간', 
+            basePrice: 350000, 
+            options: [
+                {name: '기본 마사지', price: 0}, 
+                {name: '코스튬 (교복/간호사/경찰)', price: 10000}, 
+                {name: '수치플 / 똥까시', price: 30000}, 
+                {name: '안대 & 개갈기 사용', price: 20000}
+            ] 
+        },
+        'black': { 
+            title: '더 블랙 (VVIP)', 
+            time: '24시간', 
+            basePrice: 800000, 
+            options: [
+                {name: '기본 마사지', price: 0}, 
+                {name: '본디지 (결박 플레이)', price: 40000}, 
+                {name: 'SM 플레이 / 강간플', price: 70000}, 
+                {name: '노예 플레이 (1:1 맞춤 하드)', price: 80000}
+            ] 
+        }
     };
     
     let coursesData; 
@@ -307,8 +358,8 @@
     // --- 2. 데이터 저장/불러오기 로직 (핵심 기능 유지) ---
     function loadCoursesData() {
         // 기존 데이터와 충돌 방지를 위해 키값 변경
-        const savedData = localStorage.getItem('noblesseCoursesData_KR');
-        const savedIndex = localStorage.getItem('noblesseNewCourseIndex_KR'); 
+        const savedData = localStorage.getItem('noblesseCoursesData_KR_V2'); // 버전을 V2로 변경하여 새 데이터 강제 로드
+        const savedIndex = localStorage.getItem('noblesseNewCourseIndex_KR_V2'); 
 
         if (savedData) {
             try {
@@ -323,14 +374,14 @@
     }
     
     function saveCoursesData() {
-        localStorage.setItem('noblesseCoursesData_KR', JSON.stringify(coursesData));
-        localStorage.setItem('noblesseNewCourseIndex_KR', newCourseIndex); 
+        localStorage.setItem('noblesseCoursesData_KR_V2', JSON.stringify(coursesData));
+        localStorage.setItem('noblesseNewCourseIndex_KR_V2', newCourseIndex); 
     }
 
     // [자동 저장 기능]
     function saveUserSelection() {
         if (!currentSelectedCourseKey) return;
-        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections_KR');
+        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections_KR_V2');
         let savedSelections = {};
         try { savedSelections = savedSelectionsRaw ? JSON.parse(savedSelectionsRaw) : {}; } catch (e) { console.error(e); }
         
@@ -340,7 +391,7 @@
         });
         
         savedSelections[currentSelectedCourseKey] = { selectedOptions: selectedOptions };
-        localStorage.setItem('noblesseUserSelections_KR', JSON.stringify(savedSelections));
+        localStorage.setItem('noblesseUserSelections_KR_V2', JSON.stringify(savedSelections));
         console.log(`✅ [${coursesData[currentSelectedCourseKey]?.title}] 자동 저장됨.`);
     }
     
@@ -585,8 +636,8 @@
         });
         optionsList.innerHTML = html;
         
-        // 이전에 저장된 선택값 불러오기
-        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections_KR');
+        // 이전에 저장된 선택값 불러오기 (V2 키 사용)
+        const savedSelectionsRaw = localStorage.getItem('noblesseUserSelections_KR_V2');
         let savedSelections = {};
         try { savedSelections = savedSelectionsRaw ? JSON.parse(savedSelectionsRaw) : {}; } catch (e) {}
         
