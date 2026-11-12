@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRON 에어드랍 이벤트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- 상단 헤더 -->
+    <header class="w-full max-w-4xl mx-auto px-6 py-6 flex justify-between items-center border-b border-slate-800">
+        <div class="flex items-center space-x-2">
+            <span class="text-xl font-bold tracking-wider text-red-500">TRON</span>
+            <span class="text-sm bg-red-500/10 text-red-400 px-2.5 py-1 rounded-full font-medium">Official Event</span>
+        </div>
+        <div class="text-sm text-slate-400">이벤트 기간: ~ 2026.11.30</div>
+    </header>
+
+    <!-- 메인 컨텐츠 (히어로 섹션) -->
+    <main class="w-full max-w-2xl mx-auto px-6 py-12 flex-grow flex flex-col justify-center items-center text-center">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+            트론(TRON) 공식 커뮤니티<br>
+            <span class="text-red-500">기념 에어드랍 이벤트</span>
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg mb-8 max-w-xl">
+            트론링크(TronLink) 지갑을 연동하고 간단한 참여 조건을 완료하시면, 공식 에어드랍 보상을 즉시 지급해 드립니다.
+        </p>
+
+        <!-- 지갑 연동 및 참여 카드 -->
+        <div class="w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl text-left mb-8">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-800">
+                <span class="text-sm font-medium text-slate-400">연동 상태</span>
+                <span id="walletStatus" class="inline-flex items-center text-sm text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full">
+                    <span class="w-2 h-2 bg-amber-400 rounded-full mr-2"></span> 미연결 상태
+                </span>
+            </div>
+
+            <!-- 참여 단계 안내 -->
+            <div class="space-y-4 mb-6">
+                <div class="flex items-start space-x-3 text-sm text-slate-300">
+                    <span class="bg-slate-800 text-red-400 font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                    <p>트론링크 지갑을 안전하게 연결하여 본인 인증을 진행합니다. (자산 이동 권한을 요구하지 않습니다)</p>
+                </div>
+                <div class="flex items-start space-x-3 text-sm text-slate-300">
+                    <span class="bg-slate-800 text-red-400 font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                    <p>지갑 주소 확인 후 이벤트 참여 버튼을 클릭합니다.</p>
+                </div>
+            </div>
+
+            <!-- 액션 버튼 -->
+            <button id="connectBtn" class="w-full py-4 bg-red-600 hover:bg-red-500 transition font-bold rounded-xl text-white shadow-lg shadow-red-600/20">
+                지갑 연결하기 (TronLink)
+            </button>
+        </div>
+
+        <!-- 유의사항 -->
+        <div class="text-xs text-slate-500 space-y-1.5 text-left w-full max-w-xl">
+            <p>※ 본 이벤트는 공식 트론 프로토콜 가이드라인을 준수하며, 스마트 컨트랙트 무제한 승인(Approve)을 요구하지 않습니다.</p>
+            <p>※ 부정 참여가 확인될 경우 보상 지급 대상에서 제외될 수 있습니다.</p>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="w-full max-w-4xl mx-auto px-6 py-6 border-t border-slate-800 text-center text-xs text-slate-500">
+        &copy; 2026 TRON Foundation. All rights reserved.
+    </footer>
+
+    <!-- 인터랙션 스크립트 예시 -->
+    <script>
+        const connectBtn = document.getElementById('connectBtn');
+        const walletStatus = document.getElementById('walletStatus');
+
+        connectBtn.addEventListener('click', () => {
+            // 실제 서비스에서는 여기에 window.tronWeb 또는 TronLink 연동 로직 구현
+            walletStatus.innerHTML = '<span class="w-2 h-2 bg-emerald-400 rounded-full mr-2"></span> 연동 완료 (TL...xYz)';
+            walletStatus.className = 'inline-flex items-center text-sm text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full';
+            connectBtn.textContent = '이벤트 참여 완료';
+            connectBtn.classList.remove('bg-red-600', 'hover:bg-red-500');
+            connectBtn.classList.add('bg-slate-800', 'text-slate-400', 'cursor-not-allowed');
+            connectBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>
